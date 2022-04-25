@@ -6,7 +6,7 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
-BUS = 1 
+BUS = 1
 ADDR = 0x3C
 RST = None
 
@@ -26,14 +26,14 @@ draw.rectangle((0,0,width,height), outline=0, fill=0)
 
 font = ImageFont.load_default()
 
-padding = -2 
+padding = -2
 top = padding
 bottom = height - padding
 x = 0
 
 def resources():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
-    cmd = "hostname -I | cut -d\' \' -f1" 
+    cmd = "hostname -I | cut -d\' \' -f1"
     ip = subprocess.check_output(cmd, shell=True)
 
     cmd = """top -bn1 | grep load | awk '{printf "CPU Load: %.2f%%", $(NF-2)}'"""
@@ -55,14 +55,17 @@ def resources():
     time.sleep(2)
 
 def datetime():
+    draw.rectangle((0,0,width,height), outline=0, fill=0)
     cmd = "date '+%a %d %b %Y'"
     date = subprocess.check_output(cmd, shell=True)
-    draw.text((x, top), "{}".format(date.decode('utf-8')), font=font, fill=255)
+
+    draw.text((x+16, top+14), "{}".format(date.decode('utf-8')), font=font, fill=255)
+
+    oled.image(image)
+    oled.display()
     time.sleep(3)
 
 while True:
     for _ in range(5):
         resources()
     datetime()
-    
-    
