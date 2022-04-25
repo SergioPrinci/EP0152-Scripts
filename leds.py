@@ -10,4 +10,4 @@ GPIO.setwarnings(False)
 for i in range(len(leds)):
     GPIO.setup(leds[i], GPIO.OUT)
 for led in leds:
-    GPIO.output(led, HIGH)
+    GPIO.output(led, GPIO.HIGH)
