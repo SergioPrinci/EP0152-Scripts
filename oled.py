@@ -35,7 +35,7 @@ def resources():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
     cmd = "hostname -I | cut -d\' \' -f1"
     ip = subprocess.check_output(cmd, shell=True).decode('utf-8')
-    ip = "Ip: " + ip
+    ip = "IP: " + ip
 
     cmd = """top -bn1 | grep load | awk '{printf "CPU Load: %.2f%%", $(NF-2)}'"""
     cpu = subprocess.check_output(cmd, shell=True).decode('utf-8')
@@ -50,7 +50,7 @@ def resources():
     draw.text((x, top), "{}".format(ip), font=font, fill=255)
     draw.text((x, top+8), "{}".format(cpu), font=font, fill=255)
     draw.text((x, top+16), "{}".format(mem), font=font, fill=255)
-    draw.text((x, top+25), "{}".format(temp), font=font, fill=255)
+    draw.text((x, top+24), "{}".format(temp), font=font, fill=255)
 
     oled.image(image)
     oled.display()
