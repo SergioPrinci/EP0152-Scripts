@@ -70,8 +70,8 @@ def datetime():
     draw.text((x+18, top+4), "{}".format(date), font=font, fill=255)
     draw.text((x+44, top+12), "{}".format(hour), font=font, fill=255)
     if uptime.__len__() > 12:
-        draw.text((x, top+20), "Up:{}".format(uptime), font=font, fill=255)
         uptime = uptime.replace("minutes", "min")
+        draw.text((x+8, top+20), "Up:{}".format(uptime), font=font, fill=255)
     else:
         draw.text((x+12, top+20), "Uptime:{}".format(uptime), font=font, fill=255)
 
