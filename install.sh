@@ -49,7 +49,7 @@ pip3 install pi-ina219 Adafruit-SSD1306 -q --break-system-package --disable-pip-
 echo "Installing Adafruit_BBIO by compiling from source..."
 git clone https://github.com/adafruit/adafruit-beaglebone-io-python.git
 cd adafruit-beaglebone-io-python
-python3 setup.py install
+pip install .
 cd ..
 
 echo "Moving scripts..."
