@@ -8,6 +8,7 @@ echo "Installing or updating dependencies..."
 apt -qq install build-essential python3-dev python3-pip raspi-config -y
 
 tmpFolder="/tmp"
+cd $tmpFolder
 
 if [ "$EUID" -ne 0 ]
 then
@@ -44,10 +45,13 @@ echo "Installing Python libraries through apt..."
 apt -qq install python3-setuptools python3-wheel \
         python3-smbus python3-pil -y
 echo "Installing Python libraries through pip... (no other alternatives!)"
-pip3 install pi-ina219 Adafruit-SSD1306 Adafruit_BBIO -q --break-system-package --disable-pip-version-check --root-user-action=ignore
+pip3 install pi-ina219 Adafruit-SSD1306 -q --break-system-package --disable-pip-version-check --root-user-action=ignore
+echo "Installing Adafruit_BBIO by compiling from source..."
+git clone https://github.com/adafruit/adafruit-beaglebone-io-python.git
+python3 adafruit-beaglebone-io-python/setup.py install
 
 echo "Moving scripts..."
-if [ -f oled.py && -f leds.py]; then
+if [ -f oled.py ] && [ -f leds.py]; then
         mkdir $HOME/Scripts
         mv *.py $HOME/Scripts
 fi
