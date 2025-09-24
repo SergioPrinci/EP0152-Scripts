@@ -2,7 +2,7 @@
 echo "Script to install oled and leds python scripts."
 
 echo "Updating repos..."
-apt -qq update
+apt -qq update && apt -qq upgrade
 
 echo "Installing or updating dependencies..."
 apt -qq install build-essential python3-dev python3-pip -y
@@ -32,7 +32,7 @@ else
 fi
 
 echo "Making sure you enabled I2C..."
-if [ $(raspi-config nonint get_i2c) == 1 ]
+if [ $(raspi-config nonint get_i2c) -eq 1 ]
 then
         echo "I2C not enabled! Enabling it..."
         raspi-config nonint do_i2c 0
@@ -40,12 +40,13 @@ else
         echo "I2C enabled!"
 fi
 
-echo "Installing pip libraries..."
-pip3 install setuptools wheel -q
-pip3 install pi-ina219 -q
-pip3 install Adafruit-SSD1306 -q
-pip3 install smbus Pillow -q
-pip3 install Adafruit_BBIO -q
+echo "Installing Python libraries through apt..."
+apt -qq install python3-setuptools python3-wheel \
+        python3-smbus3 python3-Pillow -y
+echo "Installing Python libraries through pip... (no other alternatives!)"
+pip3 install pi-ina219 -q --break-system-package
+pip3 install Adafruit-SSD1306 -q --break-system-package
+pip3 install Adafruit_BBIO -q --break-system-package
 
 echo "Moving scripts..."
 if [ -f oled.py && -f leds.py]; then
