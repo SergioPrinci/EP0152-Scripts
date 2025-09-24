@@ -2,7 +2,7 @@ import time
 import subprocess
 import busio
 import board
-import Adafruit_SSD1306 as ssd1306
+import adafruit_ssd1306 as ssd1306
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
@@ -11,9 +11,8 @@ i2c = busio.I2C(board.SCL, board.SDA)
 
 oled = ssd1306.SSD1306_I2C(128, 32, i2c)
 
-oled.begin()
-oled.clear()
-oled.display()
+oled.fill(0)
+oled.show()
 
 width = oled.width
 height = oled.height
@@ -52,7 +51,7 @@ def resources():
     draw.text((x, top+24), "{}".format(temp), font=font, fill=255)
 
     oled.image(image)
-    oled.display()
+    oled.show()
     time.sleep(2)
 
 def datetime():
@@ -75,7 +74,7 @@ def datetime():
         draw.text((x+12, top+20), "Uptime:{}".format(uptime), font=font, fill=255)
 
     oled.image(image)
-    oled.display()
+    oled.show()
     time.sleep(3)
 
 while True:
