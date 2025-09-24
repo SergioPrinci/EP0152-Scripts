@@ -42,7 +42,7 @@ fi
 
 echo "Installing Python libraries through apt..."
 apt -qq install python3-setuptools python3-wheel \
-        python3-smbus3 python3-Pillow -y
+        python3-smbus python3-pil -y
 echo "Installing Python libraries through pip... (no other alternatives!)"
 pip3 install pi-ina219 -q --break-system-package
 pip3 install Adafruit-SSD1306 -q --break-system-package
