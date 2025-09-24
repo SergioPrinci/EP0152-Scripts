@@ -44,9 +44,7 @@ echo "Installing Python libraries through apt..."
 apt -qq install python3-setuptools python3-wheel \
         python3-smbus python3-pil -y
 echo "Installing Python libraries through pip... (no other alternatives!)"
-pip3 install pi-ina219 -q --break-system-package
-pip3 install Adafruit-SSD1306 -q --break-system-package
-pip3 install Adafruit_BBIO -q --break-system-package
+pip3 install pi-ina219 Adafruit-SSD1306 Adafruit_BBIO -q --break-system-package --disable-pip-version-check --root-user-action=ignore
 
 echo "Moving scripts..."
 if [ -f oled.py && -f leds.py]; then
