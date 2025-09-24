@@ -48,9 +48,10 @@ echo "Installing Python libraries through pip... (no other alternatives!)"
 pip3 install pi-ina219 adafruit-circuitpython-ssd1306 Adafruit-Blinka -q --break-system-package --disable-pip-version-check --root-user-action=ignore
 echo "Installing Adafruit_BBIO by compiling from source..."
 git clone https://github.com/adafruit/adafruit-beaglebone-io-python.git
+repoFolder=$(pwd)
 cd adafruit-beaglebone-io-python
 pip install .
-cd ..
+cd $repoFolder
 
 echo "Moving scripts..."
 mkdir $HOME/Scripts
