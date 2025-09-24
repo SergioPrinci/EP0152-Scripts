@@ -53,10 +53,9 @@ pip install .
 cd ..
 
 echo "Moving scripts..."
-if [ -f oled.py ] && [ -f leds.py]; then
-        mkdir $HOME/Scripts
-        mv *.py $HOME/Scripts
-fi
+mkdir $HOME/Scripts
+mv *.py $HOME/Scripts
+
 
 echo "Appending edits to rc.local..."
 echo -e "#!/bin/sh -e\npython3 $HOME/Scripts/leds.py\npython3 $HOME/Scripts/oled.py\nexit" >> /etc/rc.local
