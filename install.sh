@@ -48,7 +48,9 @@ echo "Installing Python libraries through pip... (no other alternatives!)"
 pip3 install pi-ina219 Adafruit-SSD1306 -q --break-system-package --disable-pip-version-check --root-user-action=ignore
 echo "Installing Adafruit_BBIO by compiling from source..."
 git clone https://github.com/adafruit/adafruit-beaglebone-io-python.git
-python3 adafruit-beaglebone-io-python/setup.py install
+cd adafruit-beaglebone-io-python
+python3 setup.py install
+cd ..
 
 echo "Moving scripts..."
 if [ -f oled.py ] && [ -f leds.py]; then
