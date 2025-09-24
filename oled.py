@@ -1,16 +1,15 @@
 import time
 import subprocess
-import smbus
+import busio
+import board
 import Adafruit_SSD1306 as ssd1306
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
-BUS = 1
-ADDR = 0x3C
-RST = None
+i2c = busio.I2C(board.SCL, board.SDA)
 
-oled = ssd1306.SSD1306_128_32(rst=RST, i2c_address=ADDR)
+oled = ssd1306.SSD1306_I2C(128, 32, i2c)
 
 oled.begin()
 oled.clear()
