@@ -5,7 +5,7 @@ echo "Updating repos..."
 apt -qq update && apt -qq upgrade
 
 echo "Installing or updating dependencies..."
-apt -qq install build-essential python3-dev python3-pip raspi-config -y
+apt -qq install build-essential python3-dev python3-pip python3-numpy raspi-config -y
 
 tmpFolder="/tmp"
 cd $tmpFolder
@@ -45,7 +45,7 @@ echo "Installing Python libraries through apt..."
 apt -qq install python3-setuptools python3-wheel \
         python3-smbus python3-pil -y
 echo "Installing Python libraries through pip... (no other alternatives!)"
-pip3 install pi-ina219 Adafruit-SSD1306 Adafruit-Blinka -q --break-system-package --disable-pip-version-check --root-user-action=ignore
+pip3 install pi-ina219 adafruit-circuitpython-ssd1306 Adafruit-Blinka -q --break-system-package --disable-pip-version-check --root-user-action=ignore
 echo "Installing Adafruit_BBIO by compiling from source..."
 git clone https://github.com/adafruit/adafruit-beaglebone-io-python.git
 cd adafruit-beaglebone-io-python
