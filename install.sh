@@ -40,7 +40,7 @@ fi
 
 echo "Installing Python libraries through apt..."
 apt -qq install python3-setuptools python3-wheel \
-        python3-smbus python3-pil -y
+        python3-smbus python3-pil python3-rpi.gpio -y
 
 echo "Installing Python libraries through pip... (no other alternatives!)"
 pip3 install pi-ina219 adafruit-circuitpython-ssd1306 Adafruit-Blinka -q --break-system-package --disable-pip-version-check --root-user-action=ignore
