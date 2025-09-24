@@ -48,7 +48,7 @@ pip3 install pi-ina219 adafruit-circuitpython-ssd1306 Adafruit-Blinka -q --break
 echo "Installing Adafruit_BBIO by compiling from source..."
 git clone https://github.com/adafruit/adafruit-beaglebone-io-python.git
 cd adafruit-beaglebone-io-python
-pip install .
+pip install . -q --break-system-package --disable-pip-version-check --root-user-action=ignore
 cd ..
 
 echo "Moving scripts..."
